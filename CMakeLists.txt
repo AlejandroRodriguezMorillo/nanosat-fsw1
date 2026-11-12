@@ -7,7 +7,7 @@ set(CMAKE_C_STANDARD_REQUIRED ON)
 
 add_compile_options(-Wall -Wextra -Wpedantic -Werror)
 
-add_executable(nanosat src/app/main.c src/core/fsm.c src/core/crc16.c)
+add_executable(nanosat src/app/main.c src/core/fsm.c src/core/crc16.c src/core/tlm.c)
 target_include_directories(nanosat PRIVATE src/core)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)

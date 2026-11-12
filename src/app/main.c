@@ -3,6 +3,7 @@
 // #include "version.h"
 #include "fsm.h"
 #include "crc16.h"
+#include "tlm.h"
 
 int main(void) {
 
@@ -26,6 +27,24 @@ int main(void) {
     const uint8_t test[] = "123456789";
     uint16_t crc = crc16_ccitt(test, sizeof(test) - 1);   /* 9 = longitud sin el '\0' */
     printf("CRC16(\"123456789\") = 0x%04X (esperado: 0x29B1)\n", crc);
+
+    tlm_snapshot_t snap = {
+        .state           = STATE_NOMINAL,
+        .timestamp       = 42,
+        .temperature_c10 = 253,
+        .battery_mv      = 3800
+    };
+    uint8_t frame[TLM_FRAME_SIZE];
+    size_t n = tlm_build(&snap, frame, sizeof(frame));
+
+    printf("frame (%u bytes): ", (unsigned)n);
+    for (size_t i = 0; i < n; i++) {
+        printf("%02X ", frame[i]);
+    }
+    printf("\nverify: %s\n", tlm_verify(frame, n) ? "OK" : "BAD");
+    
+    frame[8] ^= 0x01;   /* corrompe un bit de la temperatura */
+    printf("verify tras corromper: %s\n", tlm_verify(frame, n) ? "OK" : "BAD");
 
     return 0;
 }

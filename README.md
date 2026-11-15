@@ -70,9 +70,10 @@ verify tras corromper: BAD
 - [x] Mission state machine with safe mode
 - [x] CRC-16/CCITT with reference vector check
 - [x] CCSDS-style telemetry frame and verifier
+- [x] GitHub Actions CI (build + smoke test on every push)
 - [ ] Cooperative task scheduler (periodic telemetry, health checks)
 - [ ] Software-in-the-loop simulator with fault injection
-- [ ] Unit tests and GitHub Actions CI
+- [ ] Unit tests (ctest)
 - [ ] Ground station decoder (Python)
 
 ## Design notes

@@ -1,5 +1,7 @@
 # nanosat-fsw
 
+[![CI](https://github.com/AlejandroRodriguezMorillo/nanosat-fsw1/actions/workflows/ci.yml/badge.svg)](https://github.com/AlejandroRodriguezMorillo/nanosat-fsw1/actions/workflows/ci.yml)
+
 Flight software skeleton for a CubeSat, written from scratch in C99 as a learning project. It implements the core of a satellite's on-board software: a mode state machine, error detection, and a CCSDS-style telemetry frame.
 
 Built while preparing to join **FyCUS**, the nanosatellite group at the University of Seville.
